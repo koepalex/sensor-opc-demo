@@ -127,7 +127,7 @@ void setup() {
   MQ135.init(); 
 
   //depending on MQ135 type, the RL may different from 10K, 
-  // MQ135.setRL(10); 
+  // MQ135.setRL(2); 
 
   calibrate(true);
 }
@@ -154,38 +154,38 @@ void loop() {
   // analogRead(Pin) + calculate voltage
   MQ135.update(); 
 
-  // Configurate library to get CO concentration
+  // CO
   MQ135.setA(605.18); 
   MQ135.setB(-3.937); 
   float COppm = MQ135.readSensor(); 
   sendTelemetry(TelemetryIdentifierCO, COppm);
 
-  // Configurate library to get Alcohol concentration
+  // Alcohol
   MQ135.setA(77.255); 
   MQ135.setB(-3.18); 
   float Alcoholppm = MQ135.readSensor();
   sendTelemetry(TelemetryIdentifierAlcohol, Alcoholppm);
 
-  // Configurate library to get CO2 concentration
+  // CO2
   MQ135.setA(110.47); 
   MQ135.setB(-2.862); 
   float CO2ppm = MQ135.readSensor();
   CO2ppm += 400; //calibrated sensor assumes the current state of the air as 0 PPM, and it is considered today that the CO2 present in the atmosphere is around 400 PPM
   sendTelemetry(TelemetryIdentifierCO2, CO2ppm);
   
-  // Configurate library to get Tolueno (german: Methylbenzol) concentration
+  // Tolueno (german: Methylbenzol)
   MQ135.setA(44.947);
   MQ135.setB(-3.445); 
   float Toluenoppm = MQ135.readSensor();
   sendTelemetry(TelemetryIdentifierToluen, Toluenoppm);
 
-  // Configurate library to get NH4 (german: Ammonium) concentration
+  // NH4 (german: Ammonium)
   MQ135.setA(102.2 );
   MQ135.setB(-2.473); 
   float NH4ppm = MQ135.readSensor();
   sendTelemetry(TelemetryIdentifierAmmonia, NH4ppm);
 
-  // Configurate library to get Acetona concentration
+  // Acetona 
   MQ135.setA(34.668);
   MQ135.setB(-3.369);
   float Acetonappm = MQ135.readSensor();
