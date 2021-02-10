@@ -20,11 +20,11 @@ namespace sensor_opc_server.Configuration
         /// <inheritdoc />
         async Task<bool> ICommandLineArgumentParser.Parse(string[] args)
         {
-            _isValid = true;
+            _isValid = false;
             var command = new RootCommand
             {
-                new Option<string>(
-                    "--sensor-path",
+                new Argument<string>(
+                    "sensor-path", 
                     "The path to the device to read the sensor data")
             };
 
@@ -32,7 +32,7 @@ namespace sensor_opc_server.Configuration
             command.Handler = CommandHandler.Create(
                 (string sensorPath) =>
                 {
-                    _isValid &= !string.IsNullOrWhiteSpace(sensorPath);
+                    _isValid = !string.IsNullOrWhiteSpace(sensorPath);
                     _settingsConfiguration.SensorPath = sensorPath;
                 });
 

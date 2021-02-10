@@ -21,7 +21,7 @@ namespace sensor_opc_server
             IContainer container = ConfigureDependencies();
 
             var claParser = container.Resolve<ICommandLineArgumentParser>();
-            if (await claParser.Parse(args))
+            if (!(await claParser.Parse(args)))
             {
                 return;
             }
