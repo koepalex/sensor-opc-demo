@@ -28,7 +28,7 @@ namespace sensor_opc_server
 
             var sensorDataReader = container.Resolve<ISensorDataReader>();
             sensorDataReader.TelemetryReceived += (sender, args) => {
-                
+                Console.WriteLine(args.Message);
             };
 
             var sensorTask = sensorDataReader.ReadSensorDataAsync(shutdownTokenSource.Token);

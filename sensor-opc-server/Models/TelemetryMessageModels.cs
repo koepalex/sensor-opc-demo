@@ -5,17 +5,17 @@ namespace sensor_opc_server.Models
         /// <summary>
         /// Milliseconds since start of sensor program
         /// </summary>
-        ulong Timestamp { get; set; }
+        public ulong Timestamp { get; set; }
         
         /// <summary>
         /// Name of the telemetry data point
         /// </summary>
-        string Identifier { get; set; }
+        public string Identifier { get; set; }
 
         /// <summary>
         /// Vale of the telemetry data point
         /// </summary>
-        float Value { get; set; }
+        public float Value { get; set; }
 
         /// <inheritdoc />
         public override string ToString()

@@ -18,6 +18,6 @@ namespace sensor_opc_server.Interfaces.EventArgs
         /// <summary>
         /// Telemetry data received from Sensor
         /// </summary>
-        TelemetryMessageModelV1 Message { get; set; }
+        public TelemetryMessageModelV1 Message { get; set; }
     }
 }

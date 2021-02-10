@@ -13,7 +13,7 @@
 /*
  * Input API
  */
-#define CallCalibrate 42                // control id for "calibrate" command
+#define CommandCalibrate 42                // control id for "calibrate" command
 /*
  * Output API
  */
@@ -40,7 +40,7 @@ unsigned long elapsedMilliseconds;
 bool shouldCalibrate() {
   if (Serial.available() > 0) {
     incomingByte = Serial.read();    
-    return (incomingByte == CallCalibrate);
+    return (incomingByte == CommandCalibrate);
   }
   return false;
 }
