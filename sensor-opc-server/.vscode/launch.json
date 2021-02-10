@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net5.0/sensor-opc-server.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/sensor-opc-server.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -22,6 +22,27 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+            "name": ".NET Core Remote Launch (raspberry) ",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "PublishAndDeploy",
+            "program": "/home/pi/.dotnet/dotnet",
+            "args": ["/home/pi/app/sensor-opc-server.dll", "/dev/usbtty"],
+            "cwd": "/home/pi/app",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceRoot}",
+                "pipeProgram": "C:\\Program Files\\PuTTY\\plink.exe",
+                "pipeArgs": [
+                    "-pw",
+                    "${env:raspberry_pwd}",
+                    "pi@raspberrypi.local"
+                ],
+                "debuggerPath": "/home/pi/vsdbg/vsdbg"
+            }
         }
     ]
 }

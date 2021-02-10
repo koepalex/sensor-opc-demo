@@ -19,6 +19,69 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "dotnetPublish",
+            "command": "dotnet",
+            "type": "process",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "echo": false,
+                "clear": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "args": [
+                "publish",
+                "${workspaceFolder}/sensor-opc-server.csproj",
+                "-r",
+                "linux-arm"
+            ]
+        },
+        {
+            "label": "pscp",
+            "type": "shell",
+            "options": {
+                "cwd":"${workspaceFolder}"
+            },
+            "windows":{
+                "command": "pscp",
+                "args": [
+                    "-pw",
+                    "${env:raspberry_pwd}",
+                    "-v",
+                    "-P",
+                    "22",
+                    "-r",
+                    "${cwd}\\bin\\Debug\\netcoreapp3.1\\linux-arm\\publish\\*",
+                    "pi@raspberrypi.local:/home/pi/app"
+                ]
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "echo": false
+            },
+        },
+        {
+            "label": "PublishAndDeploy",
+            "type": "shell",
+            "windows":{
+                "command": "echo",
+                "args": ["'Done'"]
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "echo": false
+            },
+            "dependsOrder": "sequence",
+            "dependsOn":["dotnetPublish", "pscp"]
         }
     ]
 }
