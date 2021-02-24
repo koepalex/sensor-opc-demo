@@ -29,7 +29,7 @@
             "request": "launch",
             "preLaunchTask": "PublishAndDeploy",
             "program": "/home/pi/.dotnet/dotnet",
-            "args": ["/home/pi/app/sensor-opc-server.dll", "/dev/usbtty"],
+            "args": ["/home/pi/app/sensor-opc-server.dll", "/dev/ttyUSB0"],
             "cwd": "/home/pi/app",
             "stopAtEntry": false,
             "console": "internalConsole",

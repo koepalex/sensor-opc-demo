@@ -34,7 +34,7 @@ namespace sensor_opc_server.Input
                     ct.ThrowIfCancellationRequested();
 
                     var line = await streamReader.ReadLineAsync();
-                    if (string.IsNullOrEmpty(line))
+                    if (!string.IsNullOrEmpty(line))
                     {
                         ParseMessage(line);
                     }
@@ -47,7 +47,6 @@ namespace sensor_opc_server.Input
                 {
                     _logger.Information("Stopped reading file {path}", _settingsConfiguration.SensorPath);
                     return;
-                    
                 }
                 throw;
             }
@@ -69,7 +68,6 @@ namespace sensor_opc_server.Input
             {
                 _logger.Debug("Message received from sensor with unexpected format: {message}", line);
                 return;
-
             }
 
             var typeOfMessage = parts[0];
