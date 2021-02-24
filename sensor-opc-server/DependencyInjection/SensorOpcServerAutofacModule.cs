@@ -5,6 +5,7 @@ namespace sensor_opc_server.DependencyInjection
     using sensor_opc_server.Configuration;
     using Serilog;
     using sensor_opc_server.Input;
+    using sensor_opc_server.Database;
 
     public class SensorOpcServerAutofacModule : Module
     {
@@ -36,6 +37,10 @@ namespace sensor_opc_server.DependencyInjection
 
             builder.RegisterType<SensorDataReader>()
               .As<ISensorDataReader>()
+              .InstancePerLifetimeScope();
+
+            builder.RegisterType<TimeSeriesDataBase>()
+              .As<ITimeSeriesDataBase>()
               .InstancePerLifetimeScope();
         }
     }

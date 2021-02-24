@@ -27,13 +27,15 @@ namespace sensor_opc_server
             }
 
             var sensorDataReader = container.Resolve<ISensorDataReader>();
-            sensorDataReader.TelemetryReceived += (sender, args) => {
-                Console.WriteLine(args.Message);
-            };
+            using(var tsdb = container.Resolve<ITimeSeriesDataBase>()) 
+            {
+                sensorDataReader.TelemetryReceived += (sender, args) => {
+                    _ = tsdb.WriteDataPointAsync(args.Message);
+                };
 
-            var sensorTask = sensorDataReader.ReadSensorDataAsync(shutdownTokenSource.Token);
-            
-            await sensorTask;
+                var sensorTask = sensorDataReader.ReadSensorDataAsync(shutdownTokenSource.Token);
+                await sensorTask;
+            }
         }
 
         /// <summary>
