@@ -23,7 +23,8 @@ namespace sensor_opc_server.Database
             
             var ip = "localhost";
             var dbName = "db0";
-            _writeUrl = $"http://{ip}:8086/write?db={dbName}";
+            var precision = "ms";
+            _writeUrl = $"http://{ip}:8086/write?db={dbName}&precision={precision}";
 
             //todo create db if not exist
         }
@@ -39,7 +40,7 @@ namespace sensor_opc_server.Database
 
             try 
             {
-                var timestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds();
+                var timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 using(var request = new HttpRequestMessage())
                 {
                     request.RequestUri = new Uri(_writeUrl);
