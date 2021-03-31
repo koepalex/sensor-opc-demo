@@ -127,7 +127,8 @@ void setup() {
   MQ135.init(); 
 
   //depending on MQ135 type, the RL may different from 10K, 
-  // MQ135.setRL(2); 
+  // e.g. 202 for smd resistor defines 2KOhm
+  MQ135.setRL(2); 
 
   calibrate(true);
 }
