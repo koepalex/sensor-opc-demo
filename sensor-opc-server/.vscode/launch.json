@@ -39,7 +39,7 @@
                 "pipeArgs": [
                     "-pw",
                     "${env:raspberry_pwd}",
-                    "pi@raspberrypi.local"
+                    "pi@raspberrypi"
                 ],
                 "debuggerPath": "/home/pi/vsdbg/vsdbg"
             }
